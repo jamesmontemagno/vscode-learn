@@ -3,6 +3,7 @@ import { CatalogProvider } from './catalog/catalogProvider';
 import { LessonContentService } from './content/lessonContentService';
 import { registerCommands } from './commands/commandRegistrations';
 import { ProgressStore } from './progress/progressStore';
+import { AchievementInfoPanel } from './views/achievementInfoPanel';
 import { AchievementsTreeProvider } from './views/achievementsTreeProvider';
 import { DashboardPanel } from './views/dashboardPanel';
 import { HistoryTreeProvider } from './views/historyTreeProvider';
@@ -15,9 +16,10 @@ export function activate(context: vscode.ExtensionContext): void {
   const contentService = new LessonContentService(context);
 
   const learnTreeProvider = new LearnTreeProvider(catalogProvider, progressStore);
-  const achievementsTreeProvider = new AchievementsTreeProvider(progressStore);
+  const achievementsTreeProvider = new AchievementsTreeProvider(context.extensionUri, progressStore);
   const historyTreeProvider = new HistoryTreeProvider(progressStore);
-  const dashboardPanel = new DashboardPanel(catalogProvider, progressStore);
+  const dashboardPanel = new DashboardPanel(context.extensionUri, catalogProvider, progressStore);
+  const achievementInfoPanel = new AchievementInfoPanel(context.extensionUri, progressStore);
   const lessonReaderPanel = new LessonReaderPanel(catalogProvider, contentService, progressStore);
 
   context.subscriptions.push(
@@ -26,7 +28,7 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.window.registerTreeDataProvider('vscodeLearn.history', historyTreeProvider)
   );
 
-  registerCommands(context, catalogProvider, progressStore, dashboardPanel, lessonReaderPanel);
+  registerCommands(context, catalogProvider, progressStore, dashboardPanel, lessonReaderPanel, achievementInfoPanel);
 
   void catalogProvider.refreshIfDue();
 }

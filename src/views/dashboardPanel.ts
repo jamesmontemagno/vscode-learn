@@ -7,14 +7,21 @@ import { escapeHtml, webviewDocument } from './webviewHtml';
 export class DashboardPanel {
   private panel: vscode.WebviewPanel | undefined;
 
-  constructor(private readonly catalogProvider: CatalogProvider, private readonly progressStore: ProgressStore) {
+  constructor(
+    private readonly extensionUri: vscode.Uri,
+    private readonly catalogProvider: CatalogProvider,
+    private readonly progressStore: ProgressStore
+  ) {
     catalogProvider.onDidChangeCatalog(() => this.render());
     progressStore.onDidChangeProgress(() => this.render());
   }
 
   show(): void {
     if (!this.panel) {
-      this.panel = vscode.window.createWebviewPanel('vscodeLearn.dashboard', 'VS Code Learn Dashboard', vscode.ViewColumn.One, { enableCommandUris: true });
+      this.panel = vscode.window.createWebviewPanel('vscodeLearn.dashboard', 'VS Code Learn Dashboard', vscode.ViewColumn.One, {
+        enableCommandUris: true,
+        localResourceRoots: [vscode.Uri.joinPath(this.extensionUri, 'media')]
+      });
       this.panel.onDidDispose(() => { this.panel = undefined; });
     }
     this.render();
@@ -51,8 +58,21 @@ export class DashboardPanel {
 </div>
 <h2>Courses</h2><div class="cards">${courseCards}</div>
 <h2>Recent activity</h2>${history.length ? `<ul>${history.map(item => `<li>${escapeHtml(item.message)} <span class="muted">${new Date(item.at).toLocaleString()}</span></li>`).join('')}</ul>` : '<p class="muted">No activity yet.</p>'}
-<h2>Achievements</h2><div class="cards">${this.progressStore.getEarnedAchievements().map(entry => `<section class="card"><h3>${entry.earned ? '🏆 ' : '🔒 '}${escapeHtml(entry.definition.title)}</h3><p>${escapeHtml(entry.definition.description)}</p></section>`).join('')}</div>`;
+<h2>Achievements</h2><div class="cards">${this.progressStore.getEarnedAchievements().map(entry => {
+      const badgeUri = this.panel?.webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, 'media', 'achievements', entry.definition.badgeAsset)).toString();
+      return `<section class="card">
+  <img class="achievement-badge" src="${escapeHtml(badgeUri ?? '')}" alt="${escapeHtml(entry.definition.title)} badge">
+  <h3>${entry.earned ? '' : '🔒 '}${escapeHtml(entry.definition.title)}</h3>
+  <p>${escapeHtml(entry.definition.description)}</p>
+  <p class="muted">${escapeHtml(entry.definition.howToEarn)}</p>
+  <div class="actions"><a class="button secondary" href="${achievementDetailsCommandUri(entry.definition.id)}">View badge info</a></div>
+</section>`;
+    }).join('')}</div>`;
 
     this.panel.webview.html = webviewDocument(this.panel.webview, 'VS Code Learn Dashboard', body);
   }
+}
+
+function achievementDetailsCommandUri(achievementId: string): string {
+  return `command:vscodeLearn.showAchievementInfo?${encodeURIComponent(JSON.stringify([achievementId]))}`;
 }

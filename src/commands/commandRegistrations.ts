@@ -4,13 +4,15 @@ import { findLesson } from '../catalog/types';
 import type { ProgressStore } from '../progress/progressStore';
 import type { DashboardPanel } from '../views/dashboardPanel';
 import type { LessonReaderPanel } from '../views/lessonReaderPanel';
+import type { AchievementInfoPanel } from '../views/achievementInfoPanel';
 
 export function registerCommands(
   context: vscode.ExtensionContext,
   catalogProvider: CatalogProvider,
   progressStore: ProgressStore,
   dashboardPanel: DashboardPanel,
-  lessonReaderPanel: LessonReaderPanel
+  lessonReaderPanel: LessonReaderPanel,
+  achievementInfoPanel: AchievementInfoPanel
 ): void {
   context.subscriptions.push(
     vscode.commands.registerCommand('vscodeLearn.showDashboard', () => dashboardPanel.show()),
@@ -67,6 +69,12 @@ export function registerCommands(
     vscode.commands.registerCommand('vscodeLearn.refreshCatalog', async () => {
       await catalogProvider.refresh(true);
       await lessonReaderPanel.refreshCurrent();
+    }),
+    vscode.commands.registerCommand('vscodeLearn.showAchievementInfo', (achievementId?: string) => {
+      if (!achievementId) {
+        return;
+      }
+      achievementInfoPanel.show(achievementId);
     })
   );
 }
