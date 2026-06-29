@@ -40,6 +40,7 @@ compiles, tests, and packages the extension on every push and pull request.
    Manage** scope (organization: *All accessible organizations*).
 3. **Add the token as a repository secret** named `VSCE_PAT`
    (GitHub repo → *Settings* → *Secrets and variables* → *Actions*).
+   The workflow also accepts `VSCE_TOKEN` for compatibility with other repos.
 4. *(Optional)* To also publish to [Open VSX](https://open-vsx.org), add an
    `OVSX_PAT` secret. If it is absent the workflow simply skips that step.
 
