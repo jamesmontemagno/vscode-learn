@@ -44,17 +44,22 @@ compiles, tests, and packages the extension on every push and pull request.
 4. *(Optional)* To also publish to [Open VSX](https://open-vsx.org), add an
    `OVSX_PAT` secret. If it is absent the workflow simply skips that step.
 
+### Versioning
+
+The published version is set **automatically** to `1.0.<build-number>`, where the
+build number is the GitHub Actions run number of the `Publish` workflow. You never
+need to bump the version manually — each publish gets a unique, increasing version.
+(The `version` in `package.json` is only a placeholder for local development.)
+
 ### Cutting a release
 
-```bash
-# bump the version (updates package.json + creates a git tag)
-npm version patch   # or minor / major
-git push --follow-tags
-```
+Just trigger the `Publish` workflow — no version bump needed:
 
-Then create a GitHub Release for that tag (or run the **Publish** workflow
-manually via *Actions → Publish → Run workflow*). The workflow tests, packages,
-publishes to the Marketplace, and attaches the `.vsix` to the release.
+- **Create a GitHub Release** (recommended), or
+- Run it manually via *Actions → Publish → Run workflow*.
+
+The workflow tests, stamps the version as `1.0.<run-number>`, packages, publishes to
+the Marketplace, and (for releases) attaches the `.vsix` to the release.
 
 ### Publishing manually from your machine
 

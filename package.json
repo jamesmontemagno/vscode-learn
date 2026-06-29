@@ -13,6 +13,7 @@
     "url": "https://github.com/jamesmontemagno/vscode-learn/issues"
   },
   "homepage": "https://github.com/jamesmontemagno/vscode-learn#readme",
+  "icon": "media/icon.png",
   "engines": {
     "vscode": "^1.102.0"
   },

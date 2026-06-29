@@ -1,10 +1,13 @@
 .vscode/**
+.github/**
 .gitignore
 test/**
 out/test/**
 src/**
 scripts/**
 tsconfig.json
+media/icon.svg
+PLAN.md
 *.map
 *.vsix
 node_modules/.cache/**

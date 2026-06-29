@@ -1,0 +1,37 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0E639C"/>
+      <stop offset="1" stop-color="#1F8AD2"/>
+    </linearGradient>
+    <linearGradient id="cap" x1="64" y1="56" x2="192" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#DCEEFB"/>
+    </linearGradient>
+    <linearGradient id="bowl" x1="84" y1="96" x2="172" y2="160" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#EAF4FC"/>
+      <stop offset="1" stop-color="#BFDDF5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- rounded background -->
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+
+  <!-- mortarboard top -->
+  <path d="M128 50L210 88L128 126L46 88L128 50Z" fill="url(#cap)"/>
+  <path d="M128 50L210 88L128 126L46 88L128 50Z" fill="#000000" fill-opacity="0.04"/>
+
+  <!-- cap bowl -->
+  <path d="M76 102V134C76 152 99 166 128 166C157 166 180 152 180 134V102L128 126L76 102Z" fill="url(#bowl)"/>
+
+  <!-- tassel cord -->
+  <path d="M204 90V150" stroke="#FFD15C" stroke-width="6" stroke-linecap="round"/>
+  <!-- tassel knot -->
+  <circle cx="204" cy="88" r="7" fill="#FFFFFF"/>
+  <!-- tassel bundle -->
+  <path d="M196 150H212L210 164C210 167 207 169 204 169C201 169 198 167 198 164L196 150Z" fill="#FFD15C"/>
+  <path d="M200 168V178M204 169V179M208 168V178" stroke="#F4B731" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- gamification spark / star -->
+  <path d="M178 176L184 190L198 196L184 202L178 216L172 202L158 196L172 190L178 176Z" fill="#FFD15C"/>
+</svg>
