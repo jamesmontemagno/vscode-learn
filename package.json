@@ -23,8 +23,13 @@
   ],
   "activationEvents": [
     "onView:vscodeLearn.courses",
+    "onView:vscodeLearn.achievements",
+    "onView:vscodeLearn.history",
     "onCommand:vscodeLearn.showDashboard",
-    "onCommand:vscodeLearn.openLesson"
+    "onCommand:vscodeLearn.openLesson",
+    "onCommand:vscodeLearn.showAchievements",
+    "onCommand:vscodeLearn.showAchievementInfo",
+    "onCommand:vscodeLearn.openExternalLink"
   ],
   "main": "./out/src/extension.js",
   "scripts": {
@@ -96,7 +101,8 @@
     "commands": [
       {
         "command": "vscodeLearn.showDashboard",
-        "title": "VS Code Learn: Show Dashboard"
+        "title": "VS Code Learn: Show Dashboard",
+        "icon": "$(dashboard)"
       },
       {
         "command": "vscodeLearn.openLesson",
@@ -124,11 +130,20 @@
       },
       {
         "command": "vscodeLearn.refreshCatalog",
-        "title": "VS Code Learn: Refresh Course Catalog"
+        "title": "VS Code Learn: Refresh Course Catalog",
+        "icon": "$(refresh)"
       },
       {
         "command": "vscodeLearn.showAchievements",
         "title": "VS Code Learn: Show Achievements"
+      },
+      {
+        "command": "vscodeLearn.showAchievementInfo",
+        "title": "VS Code Learn: Show Achievement Info"
+      },
+      {
+        "command": "vscodeLearn.openExternalLink",
+        "title": "VS Code Learn: Open External Link"
       }
     ],
     "menus": {

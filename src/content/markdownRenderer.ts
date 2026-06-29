@@ -23,10 +23,11 @@ function rewriteRenderedHtml(catalog: LearnCatalog, lesson: LearnLesson, html: s
       if (mappedLesson) {
         return `<a href="command:vscodeLearn.openLesson?${encodeURIComponent(JSON.stringify([mappedLesson.id]))}"`;
       }
-      if (href.startsWith('/')) {
-        return `<a href="https://code.visualstudio.com${href}"`;
+      if (href.startsWith('#') || href.startsWith('command:')) {
+        return `<a href="${escapeAttribute(href)}"`;
       }
-      return `<a href="${escapeAttribute(href)}"`;
+      const normalizedHref = href.startsWith('/') ? `https://code.visualstudio.com${href}` : href;
+      return `<a href="${escapeAttribute(openExternalLinkCommandUri(normalizedHref))}"`;
     })
     .replace(/<img src="([^"]+)"/g, (_match, src: string) => `<img src="${escapeAttribute(rewriteMarkdownAssetUrl(lesson, src))}"`);
 }
@@ -132,4 +133,8 @@ function getYouTubeVideo(value: string): { id: string; watchUrl: string; embedUr
 
 function escapeAttribute(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
+function openExternalLinkCommandUri(url: string): string {
+  return `command:vscodeLearn.openExternalLink?${encodeURIComponent(JSON.stringify([url]))}`;
 }

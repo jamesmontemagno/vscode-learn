@@ -12,6 +12,14 @@ test('renders markdown and rewrites known learn links to command URIs', () => {
   assert.match(html, /command:vscodeLearn\.openLesson/);
 });
 
+test('rewrites external links to integrated-browser command URIs', () => {
+  const lesson = findLesson(generatedLearnCatalog, 'foundations/introduction-to-agent-first-development');
+  assert.ok(lesson);
+
+  const html = renderLessonMarkdown(generatedLearnCatalog, lesson, '[Learn more](https://code.visualstudio.com/docs)');
+  assert.match(html, /command:vscodeLearn\.openExternalLink/);
+});
+
 test('does not render raw html from markdown', () => {
   const lesson = findLesson(generatedLearnCatalog, 'foundations/introduction-to-agent-first-development');
   assert.ok(lesson);

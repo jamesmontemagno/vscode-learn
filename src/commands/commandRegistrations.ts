@@ -21,7 +21,7 @@ export function registerCommands(
       if (!url) {
         return;
       }
-      await vscode.env.openExternal(vscode.Uri.parse(url));
+      await openInIntegratedBrowser(url);
     }),
     vscode.commands.registerCommand('vscodeLearn.openLesson', async (lessonId?: string) => {
       const selectedLessonId = lessonId ?? await pickLesson(catalogProvider);
@@ -36,8 +36,14 @@ export function registerCommands(
       }
       const lesson = findLesson(catalogProvider.getCatalog(), selectedLessonId);
       if (lesson) {
-        await vscode.env.openExternal(vscode.Uri.parse(lesson.canonicalUrl));
+        await openInIntegratedBrowser(lesson.canonicalUrl);
       }
+    }),
+    vscode.commands.registerCommand('vscodeLearn.openExternalLink', async (url?: string) => {
+      if (!url) {
+        return;
+      }
+      await openInIntegratedBrowser(url);
     }),
     vscode.commands.registerCommand('vscodeLearn.markLessonStarted', async (lessonId?: string) => {
       const selectedLessonId = lessonId ?? await pickLesson(catalogProvider);
@@ -87,4 +93,21 @@ async function pickLesson(catalogProvider: CatalogProvider): Promise<string | un
   })));
   const picked = await vscode.window.showQuickPick(picks, { title: 'Open VS Code Learn lesson' });
   return picked?.lessonId;
+}
+
+async function openInIntegratedBrowser(url: string): Promise<void> {
+  let parsed: URL;
+  try {
+    parsed = new URL(url);
+  } catch {
+    await vscode.window.showErrorMessage(`Unable to open invalid URL: ${url}`);
+    return;
+  }
+
+  if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+    await vscode.commands.executeCommand('simpleBrowser.show', parsed.toString());
+    return;
+  }
+
+  await vscode.env.openExternal(vscode.Uri.parse(parsed.toString()));
 }
