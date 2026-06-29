@@ -35,5 +35,9 @@ export interface AchievementDefinition {
   readonly id: string;
   readonly title: string;
   readonly description: string;
+  readonly badge: string;
+  readonly badgeAsset: string;
+  readonly howToEarn: string;
+  readonly whyItMatters: string;
   readonly category: 'gettingStarted' | 'streaks' | 'courseMastery' | 'completion';
 }
