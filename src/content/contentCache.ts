@@ -21,6 +21,19 @@ export class ContentCache {
       const bytes = await vscode.workspace.fs.readFile(uri);
       return { ...entry, markdown: Buffer.from(bytes).toString('utf8') };
     } catch (error) {
+      if (isFileNotFound(error)) {
+        const nextMetadata = { ...metadata };
+        delete nextMetadata[lessonId];
+        try {
+          await this.context.globalState.update('vscodeLearn.contentMetadata', nextMetadata);
+        } catch (metadataError) {
+          throw new Error(
+            `Cached lesson content metadata is stale for ${lessonId}, and metadata cleanup failed: ${messageFromError(metadataError)}`
+          );
+        }
+        return undefined;
+      }
+
       throw new Error(`Cached lesson content metadata exists but content file is unreadable for ${lessonId}: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
@@ -38,4 +51,18 @@ export class ContentCache {
   private contentUri(lessonId: string): vscode.Uri {
     return vscode.Uri.joinPath(this.context.globalStorageUri, 'content', `${lessonId.replace(/[^\w.-]+/g, '__')}.md`);
   }
+}
+
+function isFileNotFound(error: unknown): boolean {
+  if (error instanceof vscode.FileSystemError) {
+    return error.code === 'FileNotFound';
+  }
+  if (error instanceof Error) {
+    return error.message.includes('nonexistent file') || error.message.includes('FileNotFound');
+  }
+  return false;
+}
+
+function messageFromError(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
 }
