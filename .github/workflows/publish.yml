@@ -27,6 +27,11 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Set version to 1.0.<build number>
+        run: |
+          npm version "1.0.${{ github.run_number }}" --no-git-tag-version --allow-same-version
+          echo "Publishing version 1.0.${{ github.run_number }}"
+
       - name: Package VSIX
         run: npx @vscode/vsce package -o vscode-learn.vsix
 
