@@ -1,0 +1,82 @@
+import * as vscode from 'vscode';
+import type { CatalogProvider } from '../catalog/catalogProvider';
+import { findLesson } from '../catalog/types';
+import type { ProgressStore } from '../progress/progressStore';
+import type { DashboardPanel } from '../views/dashboardPanel';
+import type { LessonReaderPanel } from '../views/lessonReaderPanel';
+
+export function registerCommands(
+  context: vscode.ExtensionContext,
+  catalogProvider: CatalogProvider,
+  progressStore: ProgressStore,
+  dashboardPanel: DashboardPanel,
+  lessonReaderPanel: LessonReaderPanel
+): void {
+  context.subscriptions.push(
+    vscode.commands.registerCommand('vscodeLearn.showDashboard', () => dashboardPanel.show()),
+    vscode.commands.registerCommand('vscodeLearn.showAchievements', () => vscode.commands.executeCommand('vscodeLearn.achievements.focus')),
+    vscode.commands.registerCommand('vscodeLearn.openVideo', async (url?: string) => {
+      if (!url) {
+        return;
+      }
+      await vscode.env.openExternal(vscode.Uri.parse(url));
+    }),
+    vscode.commands.registerCommand('vscodeLearn.openLesson', async (lessonId?: string) => {
+      const selectedLessonId = lessonId ?? await pickLesson(catalogProvider);
+      if (selectedLessonId) {
+        await lessonReaderPanel.open(selectedLessonId);
+      }
+    }),
+    vscode.commands.registerCommand('vscodeLearn.openOfficialPage', async (lessonId?: string) => {
+      const selectedLessonId = lessonId ?? await pickLesson(catalogProvider);
+      if (!selectedLessonId) {
+        return;
+      }
+      const lesson = findLesson(catalogProvider.getCatalog(), selectedLessonId);
+      if (lesson) {
+        await vscode.env.openExternal(vscode.Uri.parse(lesson.canonicalUrl));
+      }
+    }),
+    vscode.commands.registerCommand('vscodeLearn.markLessonStarted', async (lessonId?: string) => {
+      const selectedLessonId = lessonId ?? await pickLesson(catalogProvider);
+      const lesson = selectedLessonId ? findLesson(catalogProvider.getCatalog(), selectedLessonId) : undefined;
+      if (lesson) {
+        await progressStore.markLessonStarted(lesson);
+      }
+    }),
+    vscode.commands.registerCommand('vscodeLearn.markLessonComplete', async (lessonId?: string) => {
+      const selectedLessonId = lessonId ?? await pickLesson(catalogProvider);
+      const lesson = selectedLessonId ? findLesson(catalogProvider.getCatalog(), selectedLessonId) : undefined;
+      if (lesson) {
+        await progressStore.markLessonComplete(lesson);
+      }
+    }),
+    vscode.commands.registerCommand('vscodeLearn.resetLessonProgress', async (lessonId?: string) => {
+      const selectedLessonId = lessonId ?? await pickLesson(catalogProvider);
+      const lesson = selectedLessonId ? findLesson(catalogProvider.getCatalog(), selectedLessonId) : undefined;
+      if (lesson) {
+        await progressStore.resetLesson(lesson);
+      }
+    }),
+    vscode.commands.registerCommand('vscodeLearn.resetAllProgress', async () => {
+      const answer = await vscode.window.showWarningMessage('Reset all VS Code Learn progress and achievements?', { modal: true }, 'Reset');
+      if (answer === 'Reset') {
+        await progressStore.resetAll();
+      }
+    }),
+    vscode.commands.registerCommand('vscodeLearn.refreshCatalog', async () => {
+      await catalogProvider.refresh(true);
+      await lessonReaderPanel.refreshCurrent();
+    })
+  );
+}
+
+async function pickLesson(catalogProvider: CatalogProvider): Promise<string | undefined> {
+  const picks = catalogProvider.getCatalog().courses.flatMap(course => course.lessons.map(lesson => ({
+    label: lesson.title,
+    description: course.title,
+    lessonId: lesson.id
+  })));
+  const picked = await vscode.window.showQuickPick(picks, { title: 'Open VS Code Learn lesson' });
+  return picked?.lessonId;
+}

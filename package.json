@@ -1,0 +1,148 @@
+{
+  "name": "vscode-learn",
+  "displayName": "VS Code Learn",
+  "description": "Gamifies VS Code Learn courses with an embedded reader, progress tracking, history, and achievements.",
+  "version": "0.0.1",
+  "publisher": "vs-publisher-473885",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesmontemagno/vscode-learn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jamesmontemagno/vscode-learn/issues"
+  },
+  "homepage": "https://github.com/jamesmontemagno/vscode-learn#readme",
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "categories": [
+    "Education",
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:vscodeLearn.courses",
+    "onCommand:vscodeLearn.showDashboard",
+    "onCommand:vscodeLearn.openLesson"
+  ],
+  "main": "./out/src/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node --test \"./out/test/**/*.test.js\"",
+    "generate:catalog": "node ./scripts/generateCatalog.mjs",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^20.14.10",
+    "@types/vscode": "^1.102.0",
+    "@vscode/vsce": "^3.2.1",
+    "typescript": "^5.5.4"
+  },
+  "contributes": {
+    "configuration": {
+      "title": "VS Code Learn Gamify",
+      "properties": {
+        "vscodeLearn.sync.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically check for VS Code Learn catalog and lesson updates."
+        },
+        "vscodeLearn.sync.intervalHours": {
+          "type": "number",
+          "default": 24,
+          "minimum": 1,
+          "description": "Minimum hours between automatic catalog/content refresh checks."
+        },
+        "vscodeLearn.sync.branch": {
+          "type": "string",
+          "default": "main",
+          "description": "vscode-docs branch to use for catalog and Markdown content."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vscodeLearn",
+          "title": "VS Code Learn",
+          "icon": "media/activity-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "vscodeLearn": [
+        {
+          "id": "vscodeLearn.courses",
+          "name": "Courses"
+        },
+        {
+          "id": "vscodeLearn.achievements",
+          "name": "Achievements"
+        },
+        {
+          "id": "vscodeLearn.history",
+          "name": "History"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "vscodeLearn.showDashboard",
+        "title": "VS Code Learn: Show Dashboard"
+      },
+      {
+        "command": "vscodeLearn.openLesson",
+        "title": "VS Code Learn: Open Lesson"
+      },
+      {
+        "command": "vscodeLearn.openOfficialPage",
+        "title": "VS Code Learn: Open Official Page"
+      },
+      {
+        "command": "vscodeLearn.markLessonStarted",
+        "title": "VS Code Learn: Mark Lesson Started"
+      },
+      {
+        "command": "vscodeLearn.markLessonComplete",
+        "title": "VS Code Learn: Mark Lesson Complete"
+      },
+      {
+        "command": "vscodeLearn.resetLessonProgress",
+        "title": "VS Code Learn: Reset Lesson Progress"
+      },
+      {
+        "command": "vscodeLearn.resetAllProgress",
+        "title": "VS Code Learn: Reset All Progress"
+      },
+      {
+        "command": "vscodeLearn.refreshCatalog",
+        "title": "VS Code Learn: Refresh Course Catalog"
+      },
+      {
+        "command": "vscodeLearn.showAchievements",
+        "title": "VS Code Learn: Show Achievements"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "vscodeLearn.showDashboard",
+          "when": "view == vscodeLearn.courses",
+          "group": "navigation"
+        },
+        {
+          "command": "vscodeLearn.refreshCatalog",
+          "when": "view == vscodeLearn.courses",
+          "group": "navigation"
+        }
+      ]
+    }
+  }
+}
