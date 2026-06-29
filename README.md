@@ -59,7 +59,11 @@ Just trigger the `Publish` workflow — no version bump needed:
 - Run it manually via *Actions → Publish → Run workflow*.
 
 The workflow tests, stamps the version as `1.0.<run-number>`, packages, publishes to
-the Marketplace, and (for releases) attaches the `.vsix` to the release.
+the Marketplace, and always handles the GitHub release artifact:
+
+- If triggered by a GitHub release event, it attaches the `.vsix` to that release.
+- If triggered manually, it automatically creates a GitHub release/tag
+  `v1.0.<run-number>` and uploads the `.vsix`.
 
 ### Publishing manually from your machine
 
