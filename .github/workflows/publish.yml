@@ -33,7 +33,7 @@ jobs:
       - name: Publish to VS Code Marketplace
         run: npx @vscode/vsce publish --packagePath vscode-learn.vsix --pat "$VSCE_PAT"
         env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          VSCE_PAT: ${{ secrets.VSCE_PAT || secrets.VSCE_TOKEN }}
 
       - name: Publish to Open VSX (optional)
         run: |
