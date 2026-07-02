@@ -129,6 +129,10 @@
         "title": "VS Code Learn: Reset All Progress"
       },
       {
+        "command": "vscodeLearn.resetAllData",
+        "title": "VS Code Learn: Reset All Data"
+      },
+      {
         "command": "vscodeLearn.refreshCatalog",
         "title": "VS Code Learn: Refresh Course Catalog",
         "icon": "$(refresh)"

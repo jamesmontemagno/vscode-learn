@@ -38,6 +38,10 @@ export class LessonContentService {
       throw new Error(`Unable to load "${lesson.title}" and no cached content is available: ${messageFromError(error)}`);
     }
   }
+
+  async clearCachedContent(): Promise<void> {
+    await this.cache.clear();
+  }
 }
 
 function messageFromError(error: unknown): string {

@@ -51,6 +51,13 @@ export class CatalogProvider {
       vscode.window.showWarningMessage(`Unable to refresh VS Code Learn catalog. Using cached catalog. ${messageFromError(error)}`);
     }
   }
+
+  async resetCachedCatalog(): Promise<void> {
+    await this.context.globalState.update(remoteCatalogKey, undefined);
+    await this.context.globalState.update(lastSyncAttemptKey, undefined);
+    this.catalog = generatedLearnCatalog;
+    this.changeEmitter.fire(this.catalog);
+  }
 }
 
 function messageFromError(error: unknown): string {

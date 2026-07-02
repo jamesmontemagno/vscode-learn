@@ -48,6 +48,18 @@ export class ContentCache {
     return content;
   }
 
+  async clear(): Promise<void> {
+    await this.context.globalState.update('vscodeLearn.contentMetadata', {});
+    const contentRoot = vscode.Uri.joinPath(this.context.globalStorageUri, 'content');
+    try {
+      await vscode.workspace.fs.delete(contentRoot, { recursive: true, useTrash: false });
+    } catch (error) {
+      if (!isFileNotFound(error)) {
+        throw error;
+      }
+    }
+  }
+
   private contentUri(lessonId: string): vscode.Uri {
     return vscode.Uri.joinPath(this.context.globalStorageUri, 'content', `${lessonId.replace(/[^\w.-]+/g, '__')}.md`);
   }

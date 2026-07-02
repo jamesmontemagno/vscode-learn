@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import type { CatalogProvider } from '../catalog/catalogProvider';
 import { findLesson } from '../catalog/types';
+import type { LessonContentService } from '../content/lessonContentService';
 import type { ProgressStore } from '../progress/progressStore';
 import type { DashboardPanel } from '../views/dashboardPanel';
 import type { LessonReaderPanel } from '../views/lessonReaderPanel';
@@ -10,6 +11,7 @@ export function registerCommands(
   context: vscode.ExtensionContext,
   catalogProvider: CatalogProvider,
   progressStore: ProgressStore,
+  lessonContentService: LessonContentService,
   dashboardPanel: DashboardPanel,
   lessonReaderPanel: LessonReaderPanel,
   achievementInfoPanel: AchievementInfoPanel
@@ -71,6 +73,22 @@ export function registerCommands(
       if (answer === 'Reset') {
         await progressStore.resetAll();
       }
+    }),
+    vscode.commands.registerCommand('vscodeLearn.resetAllData', async () => {
+      const answer = await vscode.window.showWarningMessage(
+        'Reset all VS Code Learn data? This clears progress, achievements, activity history, cached lessons, and cached catalog data.',
+        { modal: true },
+        'Reset Everything'
+      );
+      if (answer !== 'Reset Everything') {
+        return;
+      }
+
+      await progressStore.resetAll();
+      await lessonContentService.clearCachedContent();
+      await catalogProvider.resetCachedCatalog();
+      await lessonReaderPanel.refreshCurrent();
+      await vscode.window.showInformationMessage('VS Code Learn data has been reset.');
     }),
     vscode.commands.registerCommand('vscodeLearn.refreshCatalog', async () => {
       await catalogProvider.refresh(true);

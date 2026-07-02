@@ -49,7 +49,7 @@ export class DashboardPanel {
 <div class="actions">
   ${nextLesson ? `<a class="button" href="command:vscodeLearn.openLesson?${encodeURIComponent(JSON.stringify([nextLesson.id]))}">Continue: ${escapeHtml(nextLesson.title)}</a>` : ''}
   <a class="button secondary" href="command:vscodeLearn.refreshCatalog">Refresh catalog</a>
-  <a class="button secondary" href="command:vscodeLearn.resetAllProgress">Reset all progress</a>
+  <a class="button secondary" href="command:vscodeLearn.resetAllData">Reset all data</a>
 </div>
 <div class="cards">
   <section class="card"><h2>${completed}/${allLessons.length}</h2><p>Lessons complete</p></section>

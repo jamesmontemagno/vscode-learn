@@ -1,11 +1,12 @@
 import * as vscode from 'vscode';
+import { findAchievementDefinition } from '../progress/achievements';
 import type { ProgressStore } from '../progress/progressStore';
 
 export class HistoryTreeProvider implements vscode.TreeDataProvider<string> {
   private readonly changeEmitter = new vscode.EventEmitter<void>();
   readonly onDidChangeTreeData = this.changeEmitter.event;
 
-  constructor(private readonly progressStore: ProgressStore) {
+  constructor(private readonly extensionUri: vscode.Uri, private readonly progressStore: ProgressStore) {
     progressStore.onDidChangeProgress(() => this.changeEmitter.fire());
   }
 
@@ -13,7 +14,13 @@ export class HistoryTreeProvider implements vscode.TreeDataProvider<string> {
     const event = this.progressStore.getState().history.find(item => item.id === id);
     const treeItem = new vscode.TreeItem(event?.message ?? id, vscode.TreeItemCollapsibleState.None);
     treeItem.description = event ? new Date(event.at).toLocaleString() : undefined;
-    treeItem.iconPath = new vscode.ThemeIcon(event?.type === 'achievementUnlocked' ? 'trophy' : 'history');
+    if (event?.type === 'achievementUnlocked' && event.achievementId) {
+      const achievement = findAchievementDefinition(event.achievementId);
+      if (achievement) {
+        treeItem.iconPath = vscode.Uri.joinPath(this.extensionUri, 'media', 'achievements', achievement.badgeAsset);
+      }
+    }
+    treeItem.iconPath ??= new vscode.ThemeIcon('history');
     return treeItem;
   }
 

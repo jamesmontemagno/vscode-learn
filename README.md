@@ -78,4 +78,9 @@ npm run publish                 # or: npx @vscode/vsce publish
 - Local-first state only; no account, cloud sync, telemetry, or leaderboard.
 - Lesson content is fetched on demand from GitHub raw Markdown and cached in extension global storage.
 - Progress and achievement state is stored in VS Code global state.
-- Reset-all progress requires confirmation.
+- Reset-all data requires confirmation.
+
+## Local storage locations
+
+- **Windows lesson markdown cache files:** `%APPDATA%\Code\User\globalStorage\vs-publisher-473885.vscode-learn\content`
+- **Windows VS Code global state DB (contains progress/achievements/history and cached catalog metadata):** `%APPDATA%\Code\User\globalStorage\state.vscdb`

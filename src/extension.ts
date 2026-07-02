@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext): void {
 
   const learnTreeProvider = new LearnTreeProvider(catalogProvider, progressStore);
   const achievementsTreeProvider = new AchievementsTreeProvider(context.extensionUri, progressStore);
-  const historyTreeProvider = new HistoryTreeProvider(progressStore);
+  const historyTreeProvider = new HistoryTreeProvider(context.extensionUri, progressStore);
   const dashboardPanel = new DashboardPanel(context.extensionUri, catalogProvider, progressStore);
   const achievementInfoPanel = new AchievementInfoPanel(context.extensionUri, progressStore);
   const lessonReaderPanel = new LessonReaderPanel(catalogProvider, contentService, progressStore);
@@ -28,7 +28,7 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.window.registerTreeDataProvider('vscodeLearn.history', historyTreeProvider)
   );
 
-  registerCommands(context, catalogProvider, progressStore, dashboardPanel, lessonReaderPanel, achievementInfoPanel);
+  registerCommands(context, catalogProvider, progressStore, contentService, dashboardPanel, lessonReaderPanel, achievementInfoPanel);
 
   void catalogProvider.refreshIfDue();
 }
