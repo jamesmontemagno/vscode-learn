@@ -23,7 +23,7 @@
 - **Track your journey** — mark lessons started or complete and revisit your learning history.
 - **Unlock achievements** — earn milestone badges for first steps, streaks, course completion, and more.
 - **Stay focused** — browse the VS Code Learn course catalog from the Activity Bar.
-- **Works offline** — a generated course catalog ships with the extension, and content is cached locally after it is loaded.
+- **Works offline** — a generated course catalog ships with the extension, and content is cached locally once it is loaded.
 - **Local-first by design** — progress, history, and achievements stay in VS Code global storage.
 
 ## What is VS Code Learn?
