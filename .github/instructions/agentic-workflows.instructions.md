@@ -20,7 +20,7 @@ This repository uses [GitHub Agentic Workflows](https://github.github.com/gh-aw/
 2. Create a workflow source file with `gh aw new <workflow-id> --engine copilot`.
 3. Replace the template body with clear natural-language instructions for the agent.
 4. Use scoped read permissions in frontmatter. Write actions should be declared through `safe-outputs`, not broad workflow permissions.
-5. Include only the safe outputs the workflow actually needs, such as `create-issue`, `add-labels`, `assign-to-agent`, `create-agent-session`, or `noop`.
+5. Include only the safe outputs the workflow actually needs, such as `create-issue`, `add-labels`, `assign-to-user`, `assign-to-agent`, `create-agent-session`, or `noop`.
 6. Compile with `gh aw compile <workflow-id> --approve --no-check-update`.
 7. Run the repository's existing validation when the workflow change can affect code or generated behavior.
 
@@ -36,4 +36,4 @@ This repository uses [GitHub Agentic Workflows](https://github.github.com/gh-aw/
 
 The weekly lesson sync workflow is `.github/workflows/lesson-sync-agent.md`.
 
-Its purpose is to compare the official VS Code Learn catalog with `src/generated/learnCatalog.generated.ts`. If new lessons exist, it should create one deduplicated issue, label it with `lesson-sync`, and start implementation through Copilot agent assignment or agent session creation. If there is no missing lesson content, it should use the `noop` safe output and avoid creating repository noise.
+Its purpose is to compare the official VS Code Learn catalog with `src/generated/learnCatalog.generated.ts` and create one weekly summary issue for every run. Each summary issue should mention `@JamesMontemagno`, assign `JamesMontemagno`, and use the `lesson-sync` label. If new lessons exist, the issue should include deduplicated implementation details and start work through Copilot agent assignment or agent session creation. If there is no missing lesson content, the issue should clearly say no action is needed.
