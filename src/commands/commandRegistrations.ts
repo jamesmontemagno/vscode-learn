@@ -91,8 +91,13 @@ export function registerCommands(
       await vscode.window.showInformationMessage('VS Code Learn data has been reset.');
     }),
     vscode.commands.registerCommand('vscodeLearn.refreshCatalog', async () => {
-      await catalogProvider.refresh(true);
-      await lessonReaderPanel.refreshCurrent();
+      try {
+        await catalogProvider.refresh(true);
+        await lessonReaderPanel.refreshCurrent();
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        await vscode.window.showErrorMessage(`Unable to refresh VS Code Learn catalog. ${message}`);
+      }
     }),
     vscode.commands.registerCommand('vscodeLearn.showAchievementInfo', (achievementId?: string) => {
       if (!achievementId) {
