@@ -103,7 +103,7 @@ export function historyGroupLabel(iso: string, now = new Date()): string {
   const eventDay = dayKey(iso);
   const today = dayKey(now.toISOString());
   const yesterdayDate = new Date(now);
-  yesterdayDate.setDate(now.getDate() - 1);
+  yesterdayDate.setUTCDate(now.getUTCDate() - 1);
   const yesterday = dayKey(yesterdayDate.toISOString());
 
   if (eventDay === today) {
@@ -113,10 +113,10 @@ export function historyGroupLabel(iso: string, now = new Date()): string {
     return 'Yesterday';
   }
 
-  const eventDate = new Date(`${eventDay}T00:00:00`);
+  const eventDate = new Date(`${eventDay}T00:00:00Z`);
   const weekAgo = new Date(now);
-  weekAgo.setDate(now.getDate() - 7);
-  if (eventDate >= new Date(`${dayKey(weekAgo.toISOString())}T00:00:00`)) {
+  weekAgo.setUTCDate(now.getUTCDate() - 7);
+  if (eventDate >= new Date(`${dayKey(weekAgo.toISOString())}T00:00:00Z`)) {
     return 'Earlier this week';
   }
 

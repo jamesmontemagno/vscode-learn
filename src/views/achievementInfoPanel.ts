@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { achievementDefinitions, findAchievementDefinition } from '../progress/achievements';
 import type { ProgressStore } from '../progress/progressStore';
+import { achievementDetailsCommandUri } from './commandUris';
 import { getAchievementCategory } from './courseTheme';
 import { escapeHtml, webviewDocument } from './webviewHtml';
 
@@ -90,8 +91,4 @@ ${related ? `<section class="vl-section">
     this.panel.webview.html = webviewDocument(this.panel.webview, `${definition.title} Achievement`, body);
     this.panel.reveal();
   }
-}
-
-function achievementDetailsCommandUri(achievementId: string): string {
-  return `command:vscodeLearn.showAchievementInfo?${encodeURIComponent(JSON.stringify([achievementId]))}`;
 }

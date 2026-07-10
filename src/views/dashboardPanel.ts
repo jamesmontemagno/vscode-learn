@@ -3,6 +3,7 @@ import type { CatalogProvider } from '../catalog/catalogProvider';
 import { getAllLessons, type LearnCourse } from '../catalog/types';
 import type { ProgressStore } from '../progress/progressStore';
 import type { HistoryEvent } from '../progress/types';
+import { achievementDetailsCommandUri } from './commandUris';
 import {
   courseThemeClass,
   getCourseTheme,
@@ -194,10 +195,6 @@ export class DashboardPanel {
   </div>
 </a>`;
   }
-}
-
-function achievementDetailsCommandUri(achievementId: string): string {
-  return `command:vscodeLearn.showAchievementInfo?${encodeURIComponent(JSON.stringify([achievementId]))}`;
 }
 
 function renderHistoryTimeline(history: readonly HistoryEvent[]): string {

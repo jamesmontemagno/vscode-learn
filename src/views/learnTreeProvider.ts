@@ -18,14 +18,17 @@ export interface LessonNode {
 
 export class LearnTreeProvider implements vscode.TreeDataProvider<LearnNode> {
   private readonly changeEmitter = new vscode.EventEmitter<void>();
+  private continueLessonId: string | undefined;
   readonly onDidChangeTreeData = this.changeEmitter.event;
 
   constructor(private readonly catalogProvider: CatalogProvider, private readonly progressStore: ProgressStore) {
+    this.updateContinueLesson();
     catalogProvider.onDidChangeCatalog(() => this.refresh());
     progressStore.onDidChangeProgress(() => this.refresh());
   }
 
   refresh(): void {
+    this.updateContinueLesson();
     this.changeEmitter.fire();
   }
 
@@ -43,9 +46,7 @@ export class LearnTreeProvider implements vscode.TreeDataProvider<LearnNode> {
     }
 
     const progress = this.progressStore.getLessonProgress(element.lesson.id);
-    const allLessons = this.catalogProvider.getCatalog().courses.flatMap(course => course.lessons);
-    const continueLesson = allLessons.find(lesson => this.progressStore.getLessonProgress(lesson.id).status !== 'completed');
-    const isContinueTarget = continueLesson?.id === element.lesson.id;
+    const isContinueTarget = this.continueLessonId === element.lesson.id;
 
     const item = new vscode.TreeItem(element.lesson.title, vscode.TreeItemCollapsibleState.None);
     item.contextValue = 'lesson';
@@ -79,5 +80,14 @@ export class LearnTreeProvider implements vscode.TreeDataProvider<LearnNode> {
       return this.catalogProvider.getCatalog().courses.map(course => ({ kind: 'course', course }));
     }
     return element.kind === 'course' ? element.course.lessons.map(lesson => ({ kind: 'lesson', lesson })) : [];
+  }
+
+  private updateContinueLesson(): void {
+    this.continueLessonId = this.catalogProvider
+      .getCatalog()
+      .courses
+      .flatMap(course => course.lessons)
+      .find(lesson => this.progressStore.getLessonProgress(lesson.id).status !== 'completed')
+      ?.id;
   }
 }
