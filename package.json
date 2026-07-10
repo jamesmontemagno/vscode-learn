@@ -27,9 +27,17 @@
     "onView:vscodeLearn.history",
     "onCommand:vscodeLearn.showDashboard",
     "onCommand:vscodeLearn.openLesson",
+    "onCommand:vscodeLearn.openOfficialPage",
+    "onCommand:vscodeLearn.markLessonStarted",
+    "onCommand:vscodeLearn.markLessonComplete",
+    "onCommand:vscodeLearn.resetLessonProgress",
+    "onCommand:vscodeLearn.resetAllProgress",
+    "onCommand:vscodeLearn.resetAllData",
+    "onCommand:vscodeLearn.refreshCatalog",
     "onCommand:vscodeLearn.showAchievements",
     "onCommand:vscodeLearn.showAchievementInfo",
-    "onCommand:vscodeLearn.openExternalLink"
+    "onCommand:vscodeLearn.openExternalLink",
+    "onCommand:vscodeLearn.openVideo"
   ],
   "main": "./out/src/extension.js",
   "scripts": {
@@ -148,6 +156,10 @@
       {
         "command": "vscodeLearn.openExternalLink",
         "title": "VS Code Learn: Open External Link"
+      },
+      {
+        "command": "vscodeLearn.openVideo",
+        "title": "VS Code Learn: Open Video"
       }
     ],
     "menus": {
