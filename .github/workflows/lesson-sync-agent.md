@@ -20,11 +20,9 @@ network: defaults
 safe-outputs:
   create-issue:
     max: 1
-  add-labels:
-    max: 2
+    labels: [lesson-sync]
+    assignees: [JamesMontemagno]
   assign-to-agent:
-    max: 1
-  assign-to-user:
     max: 1
   create-agent-session:
     max: 1
@@ -44,8 +42,8 @@ Check whether the official VS Code Learn site has new lessons that are not yet r
 
 1. Compare the official catalog against the generated catalog.
 2. Always create one weekly summary issue for the run, even when every official lesson is already represented.
-3. Mention `@JamesMontemagno` in the issue body and assign the issue to `JamesMontemagno` with `assign-to-user`.
-4. Label the issue with `lesson-sync`.
+3. Mention `@JamesMontemagno` in the issue body. The `create-issue` safe output is configured to label the issue with `lesson-sync` and assign it to `JamesMontemagno`.
+4. Do not emit separate `add-labels` or `assign-to-user` safe outputs for the weekly summary issue.
 5. If every official lesson is already represented, make the issue a concise status report that says no action is needed.
 6. If one or more official lessons are missing, check open repository issues first so you do not create duplicate implementation work for a lesson that is already tracked.
 7. If missing lessons are untracked, include them in the weekly summary issue and start implementation by assigning the issue to the GitHub Copilot coding agent with `assign-to-agent`. If this repository supports direct agent session creation, use `create-agent-session` for the new issue instead.
