@@ -29,6 +29,12 @@ const courseThemes: Record<string, CourseTheme> = {
     accentVar: 'var(--vscode-charts-green)',
     icon: 'extensions',
     label: 'Extensions'
+  },
+  'foundry-toolkit-extension': {
+    id: 'agents',
+    accentVar: 'var(--vscode-charts-green)',
+    icon: 'extensions',
+    label: 'Extensions'
   }
 };
 
