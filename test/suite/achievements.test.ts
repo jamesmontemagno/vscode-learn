@@ -37,3 +37,25 @@ test('unlocks completionist when all lessons are completed', () => {
   assert.ok(unlocked.includes('completionist'));
   assert.ok(unlocked.includes('course-finisher'));
 });
+
+test('unlocks Foundry Toolkit mastery when its course is completed', () => {
+  const foundryCourse = generatedLearnCatalog.courses.find(course => course.id === 'foundry-toolkit-extension');
+  assert.ok(foundryCourse);
+  const lessons = Object.fromEntries(foundryCourse.lessons.map(lesson => [
+    lesson.id,
+    {
+      status: 'completed' as const,
+      completionCount: 1,
+      completedAt: '2026-07-28T00:00:00.000Z'
+    }
+  ]));
+  const state: ProgressState = {
+    schemaVersion: 1,
+    lessons,
+    achievements: {},
+    history: []
+  };
+
+  const unlocked = evaluateAchievements(generatedLearnCatalog, state).map(item => item.id);
+  assert.ok(unlocked.includes('foundry-toolkit-master'));
+});

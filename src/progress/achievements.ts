@@ -64,6 +64,16 @@ export const achievementDefinitions: readonly AchievementDefinition[] = [
     category: 'courseMastery'
   },
   {
+    id: 'foundry-toolkit-master',
+    title: 'Foundry Toolkit Master',
+    description: 'Complete every Foundry Toolkit extension lesson.',
+    badge: '⚒️',
+    badgeAsset: '11-foundry-toolkit-master.png',
+    howToEarn: 'Complete all lessons in the Foundry Toolkit extension course.',
+    whyItMatters: 'Foundry Toolkit mastery equips you to explore models and build, test, and deploy agent workflows.',
+    category: 'courseMastery'
+  },
+  {
     id: 'completionist',
     title: 'Completionist',
     description: 'Complete every known VS Code Learn lesson.',
@@ -134,6 +144,8 @@ function isUnlocked(id: string, catalog: LearnCatalog, state: ProgressState): bo
       return isCourseComplete(catalog, 'customizations', completedLessonIds);
     case 'agents-master':
       return isCourseComplete(catalog, 'agents', completedLessonIds);
+    case 'foundry-toolkit-master':
+      return isCourseComplete(catalog, 'foundry-toolkit-extension', completedLessonIds);
     case 'completionist':
       return getAllLessons(catalog).every(lesson => completedLessonIds.has(lesson.id));
     case 'momentum':

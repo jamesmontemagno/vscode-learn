@@ -35,6 +35,7 @@ Create a distinct but coordinated palette (e.g., blue/teal/purple/gold/coral acc
 8. Momentum — speed/forward progress
 9. Streak Builder — consistency over time
 10. Comeback — return after a break
+11. Foundry Toolkit Master — model exploration and building/deploying AI agents
 
 ### Naming convention
 Return files using this naming pattern:
@@ -48,4 +49,4 @@ Return files using this naming pattern:
 - `08-momentum.png`
 - `09-streak-builder.png`
 - `10-comeback.png`
-
+- `11-foundry-toolkit-master.png`

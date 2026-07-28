@@ -6,15 +6,68 @@ export const generatedLearnCatalog: LearnCatalog = {
     "repository": "microsoft/vscode-docs",
     "branch": "main",
     "tocUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/toc.json",
-    "generatedAt": "2026-06-29T15:13:22.533Z"
+    "generatedAt": "2026-07-28T15:26:26.299Z"
   },
   "courses": [
+    {
+      "id": "foundry-toolkit-extension",
+      "title": "Foundry Toolkit extension for Visual Studio Code",
+      "description": "Learn how to use Foundry Toolkit in VS Code to get started, explore models, build agents, and deploy hosted agent workflows.",
+      "area": "foundry-toolkit-extension",
+      "order": 0,
+      "lessons": [
+        {
+          "id": "foundry-toolkit-extension/1-get-started",
+          "courseId": "foundry-toolkit-extension",
+          "title": "Getting started with Foundry Toolkit in Visual Studio Code",
+          "area": "foundry-toolkit-extension",
+          "slug": "1-get-started",
+          "order": 0,
+          "sourcePath": "learn/foundry-toolkit-extension/1-get-started.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/1-get-started",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/1-get-started.md"
+        },
+        {
+          "id": "foundry-toolkit-extension/2-exploring-models",
+          "courseId": "foundry-toolkit-extension",
+          "title": "Exploring models with Model Catalog",
+          "area": "foundry-toolkit-extension",
+          "slug": "2-exploring-models",
+          "order": 1,
+          "sourcePath": "learn/foundry-toolkit-extension/2-exploring-models.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/2-exploring-models",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/2-exploring-models.md"
+        },
+        {
+          "id": "foundry-toolkit-extension/3-building-social-media-agent",
+          "courseId": "foundry-toolkit-extension",
+          "title": "Building a social media content agent with Agent Builder",
+          "area": "foundry-toolkit-extension",
+          "slug": "3-building-social-media-agent",
+          "order": 2,
+          "sourcePath": "learn/foundry-toolkit-extension/3-building-social-media-agent.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/3-building-social-media-agent",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/3-building-social-media-agent.md"
+        },
+        {
+          "id": "foundry-toolkit-extension/4-building-hosted-agent",
+          "courseId": "foundry-toolkit-extension",
+          "title": "Building a hosted agent with GitHub Copilot and Microsoft Foundry",
+          "area": "foundry-toolkit-extension",
+          "slug": "4-building-hosted-agent",
+          "order": 3,
+          "sourcePath": "learn/foundry-toolkit-extension/4-building-hosted-agent.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/4-building-hosted-agent",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/4-building-hosted-agent.md"
+        }
+      ]
+    },
     {
       "id": "foundations",
       "title": "Agent Foundations",
       "description": "Learn the fundamentals of building with AI agents in VS Code, from introducing agent-first development concepts to creating your first application using agent mode.",
       "area": "foundations",
-      "order": 0,
+      "order": 1,
       "lessons": [
         {
           "id": "foundations/introduction-to-agent-first-development",
@@ -89,7 +142,7 @@ export const generatedLearnCatalog: LearnCatalog = {
       "title": "Agent Customizations",
       "description": "Learn how to shape AI in VS Code around your workflow using custom agents, instructions, skills, prompt files, and hooks.",
       "area": "customizations",
-      "order": 1,
+      "order": 2,
       "lessons": [
         {
           "id": "customizations/1-why-customization-matter",
@@ -186,7 +239,7 @@ export const generatedLearnCatalog: LearnCatalog = {
       "title": "Agent Extensions",
       "description": "Learn how to use tools, MCP servers, plugins, and third-party agents to extend agent workflows in VS Code.",
       "area": "agents",
-      "order": 2,
+      "order": 3,
       "lessons": [
         {
           "id": "agents/1-using-tools-with-agents",
