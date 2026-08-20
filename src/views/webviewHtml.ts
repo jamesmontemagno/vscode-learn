@@ -214,6 +214,7 @@ export function webviewDocument(webview: vscode.Webview, title: string, body: st
     .course-foundations { --course-accent: var(--vscode-charts-blue); --course-soft: color-mix(in srgb, var(--vscode-charts-blue) 16%, transparent); }
     .course-customizations { --course-accent: var(--vscode-charts-purple); --course-soft: color-mix(in srgb, var(--vscode-charts-purple) 16%, transparent); }
     .course-agents { --course-accent: var(--vscode-charts-green); --course-soft: color-mix(in srgb, var(--vscode-charts-green) 16%, transparent); }
+    .course-java-spring-boot { --course-accent: var(--vscode-charts-red); --course-soft: color-mix(in srgb, var(--vscode-charts-red) 16%, transparent); }
     .course-default { --course-accent: var(--vscode-charts-orange); --course-soft: color-mix(in srgb, var(--vscode-charts-orange) 16%, transparent); }
 
     .vl-ring-wrap {

@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import type { LearnCourse } from '../catalog/types';
 import type { AchievementDefinition } from '../progress/types';
 
-export type CourseThemeId = 'foundations' | 'customizations' | 'agents' | 'default';
+export type CourseThemeId = 'foundations' | 'customizations' | 'agents' | 'java-spring-boot' | 'default';
 
 export interface CourseTheme {
   readonly id: CourseThemeId;
@@ -35,6 +35,12 @@ const courseThemes: Record<string, CourseTheme> = {
     accentVar: 'var(--vscode-charts-green)',
     icon: 'extensions',
     label: 'Extensions'
+  },
+  'java-spring-boot': {
+    id: 'java-spring-boot',
+    accentVar: 'var(--vscode-charts-red)',
+    icon: 'coffee',
+    label: 'Java & Spring Boot'
   }
 };
 
