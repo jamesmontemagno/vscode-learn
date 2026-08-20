@@ -59,3 +59,26 @@ test('unlocks Foundry Toolkit mastery when its course is completed', () => {
   const unlocked = evaluateAchievements(generatedLearnCatalog, state).map(item => item.id);
   assert.ok(unlocked.includes('foundry-toolkit-master'));
 });
+
+test('unlocks Spring Boot mastery when its course is completed', () => {
+  const course = generatedLearnCatalog.courses.find(item => item.id === 'java-spring-boot');
+  assert.ok(course);
+  const lessons = Object.fromEntries(course.lessons.map(lesson => [
+    lesson.id,
+    {
+      status: 'completed' as const,
+      completionCount: 1,
+      completedAt: '2026-08-20T00:00:00.000Z'
+    }
+  ]));
+  const state: ProgressState = {
+    schemaVersion: 1,
+    lessons,
+    achievements: {},
+    history: []
+  };
+
+  const unlocked = evaluateAchievements(generatedLearnCatalog, state).map(item => item.id);
+  assert.ok(unlocked.includes('java-spring-boot-master'));
+  assert.ok(!unlocked.includes('foundry-toolkit-master'));
+});

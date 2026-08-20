@@ -36,6 +36,7 @@ Create a distinct but coordinated palette (e.g., blue/teal/purple/gold/coral acc
 9. Streak Builder — consistency over time
 10. Comeback — return after a break
 11. Foundry Toolkit Master — model exploration and building/deploying AI agents
+12. Spring Boot Master — Java/Spring Boot app building, debugging, and testing (coffee cup + spring leaf motif)
 
 ### Naming convention
 Return files using this naming pattern:
@@ -50,3 +51,4 @@ Return files using this naming pattern:
 - `09-streak-builder.png`
 - `10-comeback.png`
 - `11-foundry-toolkit-master.png`
+- `12-java-spring-boot-master.png`

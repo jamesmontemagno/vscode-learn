@@ -6,68 +6,15 @@ export const generatedLearnCatalog: LearnCatalog = {
     "repository": "microsoft/vscode-docs",
     "branch": "main",
     "tocUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/toc.json",
-    "generatedAt": "2026-07-28T15:26:26.299Z"
+    "generatedAt": "2026-08-20T18:31:47.785Z"
   },
   "courses": [
-    {
-      "id": "foundry-toolkit-extension",
-      "title": "Foundry Toolkit extension for Visual Studio Code",
-      "description": "Learn how to use Foundry Toolkit in VS Code to get started, explore models, build agents, and deploy hosted agent workflows.",
-      "area": "foundry-toolkit-extension",
-      "order": 0,
-      "lessons": [
-        {
-          "id": "foundry-toolkit-extension/1-get-started",
-          "courseId": "foundry-toolkit-extension",
-          "title": "Getting started with Foundry Toolkit in Visual Studio Code",
-          "area": "foundry-toolkit-extension",
-          "slug": "1-get-started",
-          "order": 0,
-          "sourcePath": "learn/foundry-toolkit-extension/1-get-started.md",
-          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/1-get-started",
-          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/1-get-started.md"
-        },
-        {
-          "id": "foundry-toolkit-extension/2-exploring-models",
-          "courseId": "foundry-toolkit-extension",
-          "title": "Exploring models with Model Catalog",
-          "area": "foundry-toolkit-extension",
-          "slug": "2-exploring-models",
-          "order": 1,
-          "sourcePath": "learn/foundry-toolkit-extension/2-exploring-models.md",
-          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/2-exploring-models",
-          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/2-exploring-models.md"
-        },
-        {
-          "id": "foundry-toolkit-extension/3-building-social-media-agent",
-          "courseId": "foundry-toolkit-extension",
-          "title": "Building a social media content agent with Agent Builder",
-          "area": "foundry-toolkit-extension",
-          "slug": "3-building-social-media-agent",
-          "order": 2,
-          "sourcePath": "learn/foundry-toolkit-extension/3-building-social-media-agent.md",
-          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/3-building-social-media-agent",
-          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/3-building-social-media-agent.md"
-        },
-        {
-          "id": "foundry-toolkit-extension/4-building-hosted-agent",
-          "courseId": "foundry-toolkit-extension",
-          "title": "Building a hosted agent with GitHub Copilot and Microsoft Foundry",
-          "area": "foundry-toolkit-extension",
-          "slug": "4-building-hosted-agent",
-          "order": 3,
-          "sourcePath": "learn/foundry-toolkit-extension/4-building-hosted-agent.md",
-          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/4-building-hosted-agent",
-          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/4-building-hosted-agent.md"
-        }
-      ]
-    },
     {
       "id": "foundations",
       "title": "Agent Foundations",
       "description": "Learn the fundamentals of building with AI agents in VS Code, from introducing agent-first development concepts to creating your first application using agent mode.",
       "area": "foundations",
-      "order": 1,
+      "order": 0,
       "lessons": [
         {
           "id": "foundations/introduction-to-agent-first-development",
@@ -142,7 +89,7 @@ export const generatedLearnCatalog: LearnCatalog = {
       "title": "Agent Customizations",
       "description": "Learn how to shape AI in VS Code around your workflow using custom agents, instructions, skills, prompt files, and hooks.",
       "area": "customizations",
-      "order": 2,
+      "order": 1,
       "lessons": [
         {
           "id": "customizations/1-why-customization-matter",
@@ -239,7 +186,7 @@ export const generatedLearnCatalog: LearnCatalog = {
       "title": "Agent Extensions",
       "description": "Learn how to use tools, MCP servers, plugins, and third-party agents to extend agent workflows in VS Code.",
       "area": "agents",
-      "order": 3,
+      "order": 2,
       "lessons": [
         {
           "id": "agents/1-using-tools-with-agents",
@@ -284,6 +231,112 @@ export const generatedLearnCatalog: LearnCatalog = {
           "sourcePath": "learn/agents/4-using-third-party-agents-in-vs-code.md",
           "canonicalUrl": "https://code.visualstudio.com/learn/agents/4-using-third-party-agents-in-vs-code",
           "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/agents/4-using-third-party-agents-in-vs-code.md"
+        }
+      ]
+    },
+    {
+      "id": "foundry-toolkit-extension",
+      "title": "Build your own Agent",
+      "description": "Learn how to use Foundry Toolkit in VS Code to get started, explore models, build agents, and deploy hosted agent workflows.",
+      "area": "foundry-toolkit-extension",
+      "order": 3,
+      "lessons": [
+        {
+          "id": "foundry-toolkit-extension/1-get-started",
+          "courseId": "foundry-toolkit-extension",
+          "title": "Getting started with Foundry Toolkit in Visual Studio Code",
+          "area": "foundry-toolkit-extension",
+          "slug": "1-get-started",
+          "order": 0,
+          "sourcePath": "learn/foundry-toolkit-extension/1-get-started.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/1-get-started",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/1-get-started.md"
+        },
+        {
+          "id": "foundry-toolkit-extension/2-exploring-models",
+          "courseId": "foundry-toolkit-extension",
+          "title": "Exploring models with Model Catalog",
+          "area": "foundry-toolkit-extension",
+          "slug": "2-exploring-models",
+          "order": 1,
+          "sourcePath": "learn/foundry-toolkit-extension/2-exploring-models.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/2-exploring-models",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/2-exploring-models.md"
+        },
+        {
+          "id": "foundry-toolkit-extension/3-building-social-media-agent",
+          "courseId": "foundry-toolkit-extension",
+          "title": "Building a social media content agent with Agent Builder",
+          "area": "foundry-toolkit-extension",
+          "slug": "3-building-social-media-agent",
+          "order": 2,
+          "sourcePath": "learn/foundry-toolkit-extension/3-building-social-media-agent.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/3-building-social-media-agent",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/3-building-social-media-agent.md"
+        },
+        {
+          "id": "foundry-toolkit-extension/4-building-hosted-agent",
+          "courseId": "foundry-toolkit-extension",
+          "title": "Building a hosted agent with GitHub Copilot and Microsoft Foundry",
+          "area": "foundry-toolkit-extension",
+          "slug": "4-building-hosted-agent",
+          "order": 3,
+          "sourcePath": "learn/foundry-toolkit-extension/4-building-hosted-agent.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/foundry-toolkit-extension/4-building-hosted-agent",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/foundry-toolkit-extension/4-building-hosted-agent.md"
+        }
+      ]
+    },
+    {
+      "id": "java-spring-boot",
+      "title": "Java, Spring Boot, and GitHub Copilot",
+      "description": "Learn how to build, debug, extend, and test a Spring Boot application with Java tools and GitHub Copilot in VS Code.",
+      "area": "java-spring-boot",
+      "order": 4,
+      "lessons": [
+        {
+          "id": "java-spring-boot/1-build-and-run",
+          "courseId": "java-spring-boot",
+          "title": "Build and Run Your First Spring Boot App",
+          "area": "java-spring-boot",
+          "slug": "1-build-and-run",
+          "order": 0,
+          "sourcePath": "learn/java-spring-boot/1-build-and-run.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/java-spring-boot/1-build-and-run",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/java-spring-boot/1-build-and-run.md"
+        },
+        {
+          "id": "java-spring-boot/2-debug-and-inspect",
+          "courseId": "java-spring-boot",
+          "title": "Debug and Inspect a Spring Boot Request",
+          "area": "java-spring-boot",
+          "slug": "2-debug-and-inspect",
+          "order": 1,
+          "sourcePath": "learn/java-spring-boot/2-debug-and-inspect.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/java-spring-boot/2-debug-and-inspect",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/java-spring-boot/2-debug-and-inspect.md"
+        },
+        {
+          "id": "java-spring-boot/3-expose-tools-with-mcp",
+          "courseId": "java-spring-boot",
+          "title": "Expose Your Java Operations to GitHub Copilot with MCP",
+          "area": "java-spring-boot",
+          "slug": "3-expose-tools-with-mcp",
+          "order": 2,
+          "sourcePath": "learn/java-spring-boot/3-expose-tools-with-mcp.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/java-spring-boot/3-expose-tools-with-mcp",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/java-spring-boot/3-expose-tools-with-mcp.md"
+        },
+        {
+          "id": "java-spring-boot/4-test-with-playwright",
+          "courseId": "java-spring-boot",
+          "title": "Let GitHub Copilot Test Your Spring Boot App with Playwright",
+          "area": "java-spring-boot",
+          "slug": "4-test-with-playwright",
+          "order": 3,
+          "sourcePath": "learn/java-spring-boot/4-test-with-playwright.md",
+          "canonicalUrl": "https://code.visualstudio.com/learn/java-spring-boot/4-test-with-playwright",
+          "rawMarkdownUrl": "https://raw.githubusercontent.com/microsoft/vscode-docs/main/learn/java-spring-boot/4-test-with-playwright.md"
         }
       ]
     }

@@ -4,8 +4,10 @@ import { generatedLearnCatalog } from '../../src/generated/learnCatalog.generate
 import { findLesson, getAllLessons } from '../../src/catalog/types';
 
 test('generated catalog contains the discovered VS Code Learn courses and lessons', () => {
-  assert.equal(generatedLearnCatalog.courses.length, 4);
-  assert.equal(getAllLessons(generatedLearnCatalog).length, 22);
+  assert.equal(generatedLearnCatalog.courses.length, 5);
+  assert.equal(getAllLessons(generatedLearnCatalog).length, 26);
+  assert.ok(findLesson(generatedLearnCatalog, 'java-spring-boot/1-build-and-run'));
+  assert.ok(findLesson(generatedLearnCatalog, 'java-spring-boot/4-test-with-playwright'));
   assert.ok(findLesson(generatedLearnCatalog, 'foundry-toolkit-extension/1-get-started'));
   assert.ok(findLesson(generatedLearnCatalog, 'foundations/introduction-to-agent-first-development'));
   assert.ok(findLesson(generatedLearnCatalog, 'customizations/8-demo'));

@@ -74,6 +74,16 @@ export const achievementDefinitions: readonly AchievementDefinition[] = [
     category: 'courseMastery'
   },
   {
+    id: 'java-spring-boot-master',
+    title: 'Spring Boot Master',
+    description: 'Complete every Java, Spring Boot, and GitHub Copilot lesson.',
+    badge: '☕',
+    badgeAsset: '12-java-spring-boot-master.png',
+    howToEarn: 'Complete all lessons in the Java, Spring Boot, and GitHub Copilot course.',
+    whyItMatters: 'Spring Boot mastery shows you can build, debug, extend, and test a real Java app with Copilot at your side.',
+    category: 'courseMastery'
+  },
+  {
     id: 'completionist',
     title: 'Completionist',
     description: 'Complete every known VS Code Learn lesson.',
@@ -146,6 +156,8 @@ function isUnlocked(id: string, catalog: LearnCatalog, state: ProgressState): bo
       return isCourseComplete(catalog, 'agents', completedLessonIds);
     case 'foundry-toolkit-master':
       return isCourseComplete(catalog, 'foundry-toolkit-extension', completedLessonIds);
+    case 'java-spring-boot-master':
+      return isCourseComplete(catalog, 'java-spring-boot', completedLessonIds);
     case 'completionist':
       return getAllLessons(catalog).every(lesson => completedLessonIds.has(lesson.id));
     case 'momentum':
